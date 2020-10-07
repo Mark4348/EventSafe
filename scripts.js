@@ -1,19 +1,19 @@
 $(document).ready(function () {
     var history = JSON.parse(localStorage.getItem("city")) || [];
-    var city
+    var city;
 
-    $("#searchBtn").on("click", function (event) {
-        event.preventDefault();
+    $("#searchBtn").on("click", function () {
         city = $("#searchInput").val();
         history.unshift(city);
         console.log(history);
         localStorage.setItem("city", JSON.stringify(history));
         getEvents(city)
     })
-var covidUrl = "https://disease.sh/v3/covid-19/jhucsse/counties/" + county;
-var ticketMasterUrl = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=" + cityName + "&apikey=" + apiKey;
-var geoUrl = "https://geo.fcc.gov/api/census/block/find?latitude=" + lat + "&longitude=" + lon + "&showall=false&format=json"
-var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
+
+    var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
+    //var covidUrl = "https://disease.sh/v3/covid-19/jhucsse/counties/" + county;
+    //var ticketMasterUrl = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=" + city + "&apikey=" + apiKey;
+    //var geoUrl = "https://geo.fcc.gov/api/census/block/find?latitude=" + lat + "&longitude=" + lon + "&showall=false&format=json"
 
     function getEvents() {
 
@@ -21,101 +21,67 @@ var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
 
     function getEvents(city) {
 
-        // var covidUrl = "https://disease.sh/v3/covid-19/jhucsse/counties/" + $("#userInput")
-        // var ticketMasterUrl = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=" + city + apiKey;
-        var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
-
-
-
-        // var covidUrl = "https://disease.sh/v3/covid-19/jhucsse/counties/";
-        // var ticketMasterUrl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=";
-        // var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5";
-
-        var URL = 'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=Austin&apikey=vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5'
-        //Covid API
-        $.ajax({
-            url: "https://disease.sh/v3/covid-19/jhucsse/counties/",
-            method: "GET"
-        })
-            .then(function (data) {
-                console.log(data)
-            })
-
         //Events API
         $.ajax({
-            url: URL,
+            url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=" + city + "&apikey=" + apiKey,
             method: "GET"
-        })
-            .then(function (info) {
-                console.log(info)
-            })
+        }).then(function (info) {
+            var test = info;
+            console.log(info)
+            var lat = info._embedded.events[0]._embedded.venues[0].location.latitude;
+            var lon = info._embedded.events[0]._embedded.venues[0].location.longitude;
 
-        // var eventList = $("<ul>");
-        // eventList.addClass("list-group");
-        // $("#eventSection").append(eventList);
+            var list = info._embedded.events;
+            
+            for (var i = 0; i < list.length; i++) {
+                console.log(i);
+                console.log(test._embedded.events);
 
-        for (var i = 0; i < 5; i++) {
-
-            var event = info._embedded.events[0].name;
-            var date = info._embedded.events[0].dates.start.localDate;
-            var location = info._embedded.events[1]._embedded.venues[0].name;
-            var address = info.events._embedded.venues.address.line1;
-            var links = info._embedded.events[0].outlets[0].url;
-
-            var info = $(`
-            <ul class="collection">
-                <li class="collection-item avatar">
-                <img src="images/yuna.jpg" alt="" class="circle">
-                <span class="title">${event}</span>
-                <p>${date} <br>
-                    ${location}
-                </p>
-                <a href="${links}" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-            </ul>
-           `)
-           console.log(info);
-
-           $("#eventSection").append(info)
-           console.log(info);
-        }
-    }
-
-<<<<<<< HEAD
-=======
-    //Covid API
-    $.ajax({
-        url: "https://disease.sh/v3/covid-19/jhucsse/counties/",
-        method: "GET"
-    })
-    .then(function(data) {
-        console.log(data)
-    })
+                var event = test._embedded.events[i].name;
+                console.log(test._embedded.events);
+                var date = test._embedded.events[i].dates.start.localDate;
+                console.log(date);
+                var location = test._embedded.events[i]._embedded.venues[0].name;
+                console.log(location);
+                var address = test._embedded.events[i]._embedded.venues[0].address.line1;
+                console.log(address);
+                var links = test._embedded.events[i].url;
+                console.log(links);
     
-    //Events API
-    $.ajax({
-        url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=Austin&apikey=vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5",
-        method: "GET"
-    })
-    .then(function(data) {
-        console.log(data)
-    })
->>>>>>> fc2ca141c4e168a528b75e2e72d5ea931ca7b5aa
+                var info = $(`
+                    <li class="collection-item avatar">
+                    <img src="#" alt="" class="circle">
+                    <span class="title" >${event}</span> 
+                    <hr>
+                    <p>${date}</p> <hr>
+                    <p>${location}</p> <hr>
+                    <p>${address}</p> 
+                    <a href="${links}" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                    <hr>
+                    <br>
+               `)
+                console.log(info);
+    
+                $("#eventSection").append(info)
+            }
 
-    $.ajax({
-        url: "https://geo.fcc.gov/api/census/block/find?latitude=30.1472&longitude=-97.597504&showall=false&format=json",
-        method: "GET"
-    })
-    .then(function(a) {
-        console.log(a)
-    })    
-
-
-
-
-
-
-
-
+            $.ajax({
+                url: "https://geo.fcc.gov/api/census/block/find?latitude=" + lat + "&longitude=" + lon + "&showall=false&format=json",
+                method: "GET"
+            }).then(function (a) {
+                console.log(a)
+                var county = a.County.name;
+                
+                //Covid API
+                $.ajax({
+                    url: "https://disease.sh/v3/covid-19/jhucsse/counties/" + county,
+                    method: "GET"
+                }).then(function (data) {
+                    console.log(data)
+                })
+            })
+        })
+    }
 
 })
