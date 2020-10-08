@@ -1,6 +1,14 @@
 $(document).ready(function () {
     var history = JSON.parse(localStorage.getItem("city")) || [];
     var city;
+
+    //$('select').formSelect();
+    $('.dropdown-trigger').on("click", function(){
+        console.log("hi")
+        $('.dropdown-trigger').dropdown();
+    }) 
+        
+    
     
 
     $("#searchBtn").on("click", function () {
@@ -14,7 +22,14 @@ $(document).ready(function () {
     var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
 
     function getEvents(city) {
-
+        
+        //if($('.eventType')==="sport"){
+            //var genre = "sport";
+        //}else if(){
+            //var genre = "arts";
+        //}else{
+            //var genre = "music";
+        //}
 
         //music, arts, sports?,
 
