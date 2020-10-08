@@ -1,46 +1,42 @@
 $(document).ready(function () {
     var history = JSON.parse(localStorage.getItem("city")) || [];
     var city;
-        
-    
+
+    if(history.length>0){
+        getEvents(history[0]);
+        renderButtons();
+    }
     
 
     $("#searchBtn").on("click", function () {
-        console.log("hi")
         city = $("#searchInput").val();
         history.unshift(city);
-        console.log(history);
         localStorage.setItem("city", JSON.stringify(history));
         getEvents(city)
     })
 
-    var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
+    $(document).on('click','.arrayBtn',function(){
+        city = $(this).attr("id")
+        getEvents(city);
+    });
+
+    
 
     function getEvents(city) {
-        
-        //if($('.eventType')==="sport"){
-            //var genre = "sport";
-        //}else if(){
-            //var genre = "arts";
-        //}else{
-            //var genre = "music";
-        //}
 
-        //music, arts, sports?,
+        var apiKey = "vY3AfxyObNc8DzjJkrHSMIJeaYGpaJp5"
 
         //Events API
         $.ajax({
-            url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport,music,arts&city=" + city + "&apikey=" + apiKey,
+            url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + city + "&apikey=" + apiKey,
             method: "GET"
         }).then(function (info) {
 
             $("#eventSection").empty();
 
             var test = info;
-            $("#eventSection").empty();
-            console.log(info)
+            
             var state = info._embedded.events[0]._embedded.venues[0].state.name;
-            console.log(state);
 
             var list = info._embedded.events;
 
@@ -97,11 +93,7 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (data) {
             $("#covidData").empty();
-            console.log(data)
-            //var test1 = data;
-            //var countyEv = test1.County.name;
-            //console.log(countyEv)
-
+            
             var stateEV = data.state;
             var casesEV = data.cases;
             var recoversEV = data.recovered;
@@ -120,7 +112,20 @@ $(document).ready(function () {
             `)
 
             $("#covidData").append(elements);
+            renderButtons();
         })
+    }
+
+    function renderButtons(){
+        $('#arraySection').empty();
+        for(c=0;c<history.length;c++){
+            var arraybutton = $('<button class="arrayBtn">')
+            arraybutton.attr("id", history[c])
+            arraybutton.text(history[c])
+            $('#arraySection').append(arraybutton)
+        }
+                
+            
     }
     
 })
