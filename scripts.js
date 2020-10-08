@@ -106,13 +106,15 @@ $(document).ready(function () {
             
 
             var elements = $(`
-                <h4>Covid-19 Data<h4>
-                <h5>State: ${stateEV}</h5>
-                <p>Total Cases: ${casesEV}</p>
-                <p>Total Recoveries: ${recoversEV}</p>
-                <p>Active Cases: ${activeCases}</p>
-                <p>Today's Cases: ${todayCases}</p>
-                <p>Today's Deaths: ${todayDeaths}</p>
+                <div class="card-panel" id="covidCard">  
+                    <h4>Covid-19 Data<h4>
+                    <h5>State: ${stateEV}</h5>
+                    <p>Total Cases: ${casesEV}</p>
+                    <p>Total Recoveries: ${recoversEV}</p>
+                    <p>Active Cases: ${activeCases}</p>
+                    <p>Today's Cases: ${todayCases}</p>
+                    <p>Today's Deaths: ${todayDeaths}</p>
+                </div>
             `)
 
             $("#covidData").append(elements);
