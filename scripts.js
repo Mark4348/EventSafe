@@ -10,6 +10,9 @@ $(document).ready(function () {
 
     $("#searchBtn").on("click", function () {
         city = $("#searchInput").val();
+        if (city === '') {
+            return;
+        }
         history.unshift(city);
         localStorage.setItem("city", JSON.stringify(history));
         getEvents(city)
@@ -69,7 +72,7 @@ $(document).ready(function () {
                                 <p>${address}</p>
                             </div>
                             <div class="card-action">
-                                <a href="${links}">This is a link</a>
+                                <a href="${links}">TicketMaster</a>
                             </div>
                         </div>
                         </div>
@@ -103,6 +106,7 @@ $(document).ready(function () {
             
 
             var elements = $(`
+                <h4>Covid-19 Data<h4>
                 <h5>State: ${stateEV}</h5>
                 <p>Total Cases: ${casesEV}</p>
                 <p>Total Recoveries: ${recoversEV}</p>
