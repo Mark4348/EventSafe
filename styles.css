@@ -15,7 +15,7 @@ body {
     background: linear-gradient(#ba84d38f,#9d38c5);
     border-radius: 25px;
     margin: 0 auto;
-    width: 25%;
+    width: 35%;
     
 }
 
@@ -41,10 +41,21 @@ img{
     width: 50%;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     body {
       /* The file size of this background image is 93% smaller
          to improve page load speed on mobile internet connections */
       background-image: url(https://cdn.pixabay.com/photo/2017/08/01/21/02/people-2567965_1280.jpg);
+      
     }
+    #covidCard {
+        width: 100%;
+    }
+    figure {
+        margin: 0;
+    }
+
   }
+  
+
+  
