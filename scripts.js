@@ -1,17 +1,12 @@
 $(document).ready(function () {
     var history = JSON.parse(localStorage.getItem("city")) || [];
     var city;
-
-    //$('select').formSelect();
-    $('.dropdown-trigger').on("click", function(){
-        console.log("hi")
-        $('.dropdown-trigger').dropdown();
-    }) 
         
     
     
 
     $("#searchBtn").on("click", function () {
+        console.log("hi")
         city = $("#searchInput").val();
         history.unshift(city);
         console.log(history);
