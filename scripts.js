@@ -27,12 +27,14 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (info) {
             var test = info;
+            $("#eventSection").empty();
             console.log(info)
             var lat = info._embedded.events[0]._embedded.venues[0].location.latitude;
             var lon = info._embedded.events[0]._embedded.venues[0].location.longitude;
 
             var list = info._embedded.events;
-            
+
+
             for (var i = 0; i < list.length; i++) {
                 console.log(i);
                 console.log(test._embedded.events);
@@ -50,16 +52,14 @@ $(document).ready(function () {
     
                 var info = $(`
                     <li class="collection-item avatar">
-                    <img src="#" alt="" class="circle">
-                    <span class="title" >${event}</span> 
-                    <hr>
-                    <p>${date}</p> <hr>
-                    <p>${location}</p> <hr>
-                    <p>${address}</p> 
-                    <a href="${links}" class="secondary-content"><i class="material-icons">grade</i></a>
+                        <img src="#" alt="" class="circle">
+                        <span class="title" >${event}</span> 
+                        <hr>
+                        <p>${date}</p> <hr>
+                        <p>${location}</p> <hr>
+                        <p>${address}</p> 
+                        <a href="${links}" class="secondary-content"><i class="material-icons">grade</i></a>
                     </li>
-                    <hr>
-                    <br>
                `)
                 console.log(info);
     
@@ -78,7 +78,10 @@ $(document).ready(function () {
                     url: "https://disease.sh/v3/covid-19/jhucsse/counties/" + county,
                     method: "GET"
                 }).then(function (data) {
-                    console.log(data)
+                    console.log(data);
+
+                    // var county = data.[0].county;
+                    // var cases = data.
                 })
             })
         })
