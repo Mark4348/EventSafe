@@ -10,3 +10,11 @@ SO THAT I can make an informed decision about attendance and personal precaution
 GIVEN the user wants convienient event and covid data.
 WHEN a city is searched.
 THEN the upcoming events and relevent Covid-19 data are displayed.
+
+### APIs
+ticketmaster.com
+disease.sh
+
+#### links to REPO and Deployed application.
+https://github.com/Mark4348/EventSafe
+https://mark4348.github.io/EventSafe/
