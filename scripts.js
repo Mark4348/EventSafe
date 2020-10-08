@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var history = JSON.parse(localStorage.getItem("city")) || [];
     var city;
+    
 
     $("#searchBtn").on("click", function () {
         city = $("#searchInput").val();
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
         //Events API
         $.ajax({
-            url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport&city=" + city + "&apikey=" + apiKey,
+            url: "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sport,music,arts&city=" + city + "&apikey=" + apiKey,
             method: "GET"
         }).then(function (info) {
 
