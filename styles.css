@@ -12,3 +12,18 @@ img{
     height: 100%;
     object-fit: cover;
 }
+
+
+.gradient {
+    background-image:
+    linear-gradient(
+        white 5%, #708090 95%
+    );
+    background-attachment: fixed;
+}
+
+#banner {
+    border-radius: 15px;
+
+}
+
