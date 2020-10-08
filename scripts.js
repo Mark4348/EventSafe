@@ -125,7 +125,7 @@ $(document).ready(function () {
     function renderButtons(){
         $('#arraySection').empty();
         for(c=0;c<history.length;c++){
-            var arraybutton = $('<button class="arrayBtn">')
+            var arraybutton = $('<button class="arrayBtn teal">')
             arraybutton.attr("id", history[c])
             arraybutton.text(history[c])
             $('#arraySection').append(arraybutton)
