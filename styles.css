@@ -1,5 +1,16 @@
-* {
-    box-sizing: border-box;
+#searchBtn {
+    background-color: red;
+
+}
+
+.card-image {
+    position: relative;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 #searchInput {
     width: 50%;
