@@ -48,6 +48,9 @@ body {
 }
 #searchInput {
     width: 50%;
+    color: teal;
+    text-align: center;
+    font-size: 40px;
 }
 
 

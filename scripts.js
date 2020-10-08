@@ -21,6 +21,8 @@ $(document).ready(function () {
     $(document).on('click','.arrayBtn',function(){
         city = $(this).attr("id")
         getEvents(city);
+
+        
     });
 
     
@@ -59,7 +61,7 @@ $(document).ready(function () {
                 var image = test._embedded.events[i].images[0].url
     
                 var info = $(`
-                    <div class="col s12 m7">
+                    <div class="col s12">
                         <div class="card horizontal">
                             <div class="card-image">
                                 <img src="${image}">
