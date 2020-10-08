@@ -11,6 +11,18 @@ body {
     background-size: cover;
 }
 
+#covidCard {
+    background: linear-gradient(#ba84d38f,#9d38c5);
+    border-radius: 25px;
+    margin: 0 auto;
+    width: 25%;
+    
+}
+
+#covidData {
+    color: #FFFFFF;
+}
+
 #searchBtn {
     background-color: red;
 
