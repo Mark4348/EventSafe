@@ -26,12 +26,14 @@ $(document).ready(function () {
             $("#eventSection").empty();
 
             var test = info;
+            $("#eventSection").empty();
             console.log(info)
             var state = info._embedded.events[0]._embedded.venues[0].state.name;
             console.log(state);
 
             var list = info._embedded.events;
-            
+
+
             for (var i = 0; i < list.length; i++) {
 
                 var event = test._embedded.events[i].name;
@@ -83,10 +85,30 @@ $(document).ready(function () {
             url: "https://disease.sh/v3/covid-19/states/" + state + "?yesterday=true",
             method: "GET"
         }).then(function (data) {
+            $("#covidData").empty();
             console.log(data)
             //var test1 = data;
             //var countyEv = test1.County.name;
             //console.log(countyEv)
+
+            var stateEV = data.state;
+            var casesEV = data.cases;
+            var recoversEV = data.recovered;
+            var activeCases = data.active;
+            var todayCases = data.todayCases;
+            var todayDeaths = data.todayDeaths;
+            
+
+            var elements = $(`
+                <h5>State: ${stateEV}</h5>
+                <p>Total Cases: ${casesEV}</p>
+                <p>Total Recoveries: ${recoversEV}</p>
+                <p>Active Cases: ${activeCases}</p>
+                <p>Today's Cases: ${todayCases}</p>
+                <p>Today's Deaths: ${todayDeaths}</p>
+            `)
+
+            $("#covidData").append(elements);
         })
     }
     
